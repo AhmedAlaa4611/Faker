@@ -2,6 +2,8 @@
 
 namespace Faker\Provider;
 
+use Faker\Core\Coordinates;
+
 class Internet extends Base
 {
     protected static $freeEmailDomain = ['gmail.com', 'yahoo.com', 'hotmail.com'];
@@ -268,6 +270,17 @@ class Internet extends Base
         }
 
         return implode(':', $mac);
+    }
+
+    /**
+     * @example 'https://www.google.com/maps/embed?q=-23.929428,146.418114'
+     *
+     * @return string
+     */
+    public function embeddedGoogleMapsLink()
+    {
+        $coordinates = new Coordinates();
+        return 'https://www.google.com/maps/embed?q='.$coordinates->latitude().','.$coordinates->longitude();
     }
 
     protected static function transliterate($string)
